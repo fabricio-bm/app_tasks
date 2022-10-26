@@ -1,5 +1,4 @@
 import 'package:app_tasks/data/task_inherited.dart';
-import 'package:app_tasks/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/initial_screen.dart';
@@ -17,7 +16,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  @override
   bool opacidade = true;
 
   Widget build(BuildContext context) {
