@@ -1,3 +1,5 @@
+import 'package:app_tasks/components/tasks.dart';
+import 'package:app_tasks/data/task_dao.dart';
 import 'package:app_tasks/data/task_inherited.dart';
 import 'package:flutter/material.dart';
 
@@ -23,10 +25,10 @@ class _FormScreenState extends State<FormScreen> {
       return false;
     }
   }
-  bool difficultyValidator(String? value){
-    if(value != null && value.isEmpty){
-      if(int.parse(value) > 5 ||
-          int.parse(value) < 1){
+
+  bool difficultyValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      if (int.parse(value) > 5 || int.parse(value) < 1) {
         return true;
       }
     }
@@ -138,11 +140,10 @@ class _FormScreenState extends State<FormScreen> {
                   ElevatedButton(
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
-                          TaskInherited.of(widget.taskContext).newTask(
-                            nameController.text,
-                            imageController.text,
-                            int.parse(difficultyController.text),
-                          );
+                          TaskDao().save(Tasks(
+                              nameController.text,
+                              imageController.text,
+                              int.parse(difficultyController.text)));
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Salvando a nova tarefa')),
